@@ -17,8 +17,8 @@ define(["jquery"], function ($) {
             image: "",
             shareBlock: "#shareto .share-list",
             shareButton: "#shareto .button",
-            itemClass: "share-icon",
-            iconFont: "entypo",
+            itemClass: "fab",
+            iconFont: "fa",
             iconType: "square",
             width: 800,
             height: 600
