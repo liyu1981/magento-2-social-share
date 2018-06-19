@@ -14,7 +14,7 @@
 	z-index: 9999;
 	padding: 0;
 	width: 60px;
-	
+
 	.social {
 		opacity: 1;
 		-webkit-transform: scale(1) translateY(-90px);
@@ -25,7 +25,7 @@
 		-moz-transition: .5s;
 		-o-transition: .5s;
 		transition: .5s;
-		
+
 		ul.share-list {
 			position: relative;
 			left: 0;
@@ -36,7 +36,7 @@
 			background: #3B5998;
 			padding: 0;
 			list-style: none;
-			
+
 			li {
 				font-size: 20px;
 				cursor: pointer;
@@ -50,27 +50,27 @@
 				box-sizing: border-box;
 				-webkit-box-sizing: border-box;
 				transition: width .15s ease-in-out;
-				
+
 				&:hover {
 					color: rgba(0, 0, 0, .5);
 					width: 55px;
 				}
-				
+
 				&[class*="twitter"] {
 					background: #6CDFEA;
 					padding: 12px 0;
 				}
-				
+
 				&[class*="facebook"] {
 					background: #3B5998;
 					padding: 12px 0;
 				}
-				
+
 				&[class*="gplus"] {
 					background: #E34429;
 					padding: 12px 0;
 				}
-				
+
 				&[class*="pinterest"] {
 					background: #CB2027;
 					padding: 12px 0;
@@ -79,3 +79,30 @@
 		}
 	}
 }
+
+// **Start** Mobile (for all mobile styles.)
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+#shareto {
+  bottom: 0;
+  top: 100%;
+  left: 0px;
+  height: 1px;
+  margin: 0px auto -1px;
+  width: 100%;
+
+	.social {
+    ul.share-list {
+			width: auto;
+			background: transparent;
+      padding-top: 44px;
+
+      li {
+				  display: inline-block;
+          float: none;
+			}
+		}
+	}
+}
+
+} //  **End** Mobile (for all mobile styles.)
