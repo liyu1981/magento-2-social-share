@@ -21,7 +21,7 @@
 <?php endif; ?>
 <meta property="og:image:width" content="<?php /* @escapeNotVerified */ echo $_themeHelper->getImageWidth(); ?>" />
 <meta property="og:image:height" content="<?php /* @escapeNotVerified */ echo $_themeHelper->getImageHeight(); ?>" />
-<meta property="og:description" content="<?php echo $block->escapeHtml($_product->getShortDescription()); ?>" />
+<meta property="og:description" content="<?php echo $block->escapeHtml(trim(strip_tags($_product->getShortDescription()))); ?>" />
 <meta property="og:url" content="<?php echo $block->escapeUrl($url); ?>" />
 
 <?php if (!empty($facebookAppId)): ?>
@@ -41,7 +41,7 @@
 <?php endif; ?>
 
 <meta name="twitter:title" content="<?php echo $block->escapeHtml($_product->getName()); ?>">
-<meta name="twitter:description" content="<?php echo $block->escapeHtml($_product->getShortDescription()); ?>">
+<meta name="twitter:description" content="<?php echo $block->escapeHtml(trim(strip_tags($_product->getShortDescription()))); ?>">
 <meta name="twitter:image" content="<?php echo $block->escapeUrl($block->getImage($_product, 'product_base_image')->getImageUrl()); ?>">
 
 <!-- Open Graph data -->
