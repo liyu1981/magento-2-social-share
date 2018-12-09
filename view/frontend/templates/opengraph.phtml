@@ -13,6 +13,7 @@
     $image = $block->getPageImage();
     $url = $block->getPageUrl();
 
+    $shareConfig = $_themeHelper->getShareConfig();
     $facebookAppId = $_themeHelper->getStoreConfig(\Unet\SocialShare\Block\AbstractShare::FACEBOOK_APP_ID);
     $twitterSite = $_themeHelper->getStoreConfig(\Unet\SocialShare\Block\AbstractShare::TWITTER_NAME);
 
@@ -20,7 +21,8 @@
 ?>
 <!-- <?php echo $description; ?> -->
 
-<!-- Open Graph data -->
+<?php if ($shareConfig && $shareConfig['facebook'] && $shareConfig['facebook']['enable']) { ?>
+<!-- Facebook Open Graph data -->
 <meta property="og:type" content="<?php /* @escapeNotVerified */ echo $type; ?>" />
 <meta property="og:title" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($title); ?>" />
 <meta property="og:image" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($image); ?>" />
@@ -31,20 +33,18 @@
 <meta property="og:image:height" content="<?php /* @escapeNotVerified */ echo $_themeHelper->getImageHeight(); ?>" />
 <meta property="og:description" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($description); ?>" />
 <meta property="og:url" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($url); ?>" />
-
 <?php if (!empty($facebookAppId)): ?>
     <meta property="fb:app_id" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($facebookAppId); ?>" />
 <?php endif;?>
+<?php } ?>
 
+<?php if ($shareConfig && $shareConfig['twitter'] && $shareConfig['twitter']['enable']) { ?>
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="<?php /* @escapeNotVerified */ echo 'summary'; ?>" />
-
 <?php if (!empty($twitterSite)): ?>
     <meta name="twitter:site" content="<?php /* @escapeNotVerified */ echo '@'.$block->escapeHtml($twitterSite); ?>" />
 <?php endif; ?>
-
 <meta name="twitter:title" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($title); ?>" />
 <meta name="twitter:description" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($description); ?>" />
 <meta name="twitter:image" content="<?php /* @escapeNotVerified */ echo $block->escapeHtml($image); ?>" />
-
-<!-- Open Graph data -->
+<?php } ?>

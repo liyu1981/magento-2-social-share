@@ -4,6 +4,7 @@ namespace Unet\SocialShare\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Unet\SocialShare\Adapter\SocialAdapter;
 
 /**
  * Class Data
@@ -11,6 +12,13 @@ use Magento\Framework\App\Helper\Context;
  */
 class Data extends AbstractHelper
 {
+    const FACEBOOK_ENABLE_PATH = 'social_share/facebook/facebook_enable';
+    const TWITTER_ENABLE_PATH = 'social_share/twitter/twitter_enable';
+    const GOOGLE_PLUS_ENABLE_PATH = 'social_share/network/google_plus_enable';
+    const PINTEREST_ENABLE_PATH = 'social_share/network/pinterest_enable';
+    const FACEBOOK_APP_ID = 'social_share/facebook/facebook_app_id';
+    const TWITTER_NAME = 'social_share/twitter/twitter_site_name';
+
     /**
      * @var \Magento\Framework\Registry
      */
@@ -283,4 +291,32 @@ class Data extends AbstractHelper
     {
         return $this->getStoreConfig(self::IMAGE_HEIGHT_PATH) ? $this->getStoreConfig(self::IMAGE_HEIGHT_PATH) : self::IMAGE_HEIGHT_DEFAULT;
     }
+
+        /**
+     * @return array
+     */
+    public function getShareConfig()
+    {
+        $config = [
+            'facebook'  => [
+                'enable' => $this->getStoreConfig(self::FACEBOOK_ENABLE_PATH),
+                'link'   => SocialAdapter::FACEBOOK_SHARE_LINK,
+            ],
+            'twitter'   => [
+                'enable' => $this->getStoreConfig(self::TWITTER_ENABLE_PATH),
+                'link'   => SocialAdapter::TWITTER_SHARE_LINK,
+            ],
+            'gplus'     => [
+                'enable' => $this->getStoreConfig(self::GOOGLE_PLUS_ENABLE_PATH),
+                'link'   => SocialAdapter::GOOGLE_PLUS_SHARE_LINK,
+            ],
+            'pinterest' => [
+                'enable' => $this->getStoreConfig(self::PINTEREST_ENABLE_PATH),
+                'link'   => SocialAdapter::PINTEREST_SHARE_LINK,
+            ],
+        ];
+
+        return $config;
+    }
+
 }
